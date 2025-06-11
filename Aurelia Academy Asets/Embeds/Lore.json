@@ -1,0 +1,37 @@
+{
+  "content": "### LORE AURELIA ACADEMY ROLEPLAY SERVER",
+  "tts": false,
+  "attachments": [],
+  "embeds": [
+    {
+      "id": 704715270,
+      "title": "💠 Aurelia Academy",
+      "description": "Di dunia ini, dinamika sosial bukan hanya tentang kekuasaan, kekayaan, atau status. Ada garis tak terlihat yang lebih dalam—lebih purba—yang memisahkan manusia berdasarkan **biologi**: Alpha, Beta, dan Omega.\n\nSejak lahir, setiap orang telah terperangkap dalam tatanan yang tak dapat mereka pilih.",
+      "color": 16711680,
+      "fields": []
+    },
+    {
+      "id": 964485517,
+      "title": "🔍 Sistem Biologi",
+      "fields": [
+        {
+          "id": 790009562,
+          "name": "Alpha",
+          "value": "Lahir untuk memimpin, kuat secara naluri, karismatik, dan menuntut ketaatan. Tapi mereka menyimpan ketakutan akan kehilangan kendali."
+        },
+        {
+          "id": 984974354,
+          "name": "Beta",
+          "value": "Terlihat netral dan rasional, namun diam-diam adalah penyeimbang dan pengamat dalam bayangan."
+        },
+        {
+          "id": 513325537,
+          "name": "Omega",
+          "value": "Sering dianggap lemah, namun memiliki kekuatan menggoda yang mampu menjatuhkan Alpha terkuat sekalipun."
+        }
+      ]
+    },
+    {
+      "id": 414986262,
+      "title": "🏫 Tentang Aurelia Academy",
+      
