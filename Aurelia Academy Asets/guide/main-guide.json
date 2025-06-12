@@ -1,1 +1,24 @@
 
+{
+  "content": "# PANDUAN AURELIA ACADEMY ROLEPLAY SERVER\n`` Reminder:\nbaca dengan seksama``",
+  "tts": false,
+  "attachments": [],
+  "embeds": [
+    {
+      "id": 174831423,
+      "title": "**Panduan Untuk Server Aurelia Academy Roleplay Indonesia**",
+      "description": "**STRUKTUR DARI AURELIA ACADEMY GUIDE BOOK**\n\n``/Aurelia Academy Guide Book``\n│\n├── <#1381989642668347423> **awal mulai**\n├── <#1381928690186850374> **Panduan Lengkap Omegaverse**\n├── <#1381988022920286311> **Panduan Soal Heat & Rut**\n├── <#1381987967979098222>**Panduan Menandai (Marking)**\n└── <#1381987721039314974> **Panduan kehamilan (Pregnancy)**\n",
+      "color": 16777215,
+      "fields": []
+    },
+    {
+      "id": 281521682,
+      "color": 16777215,
+      "image": {
+        "url": "https://raw.githubusercontent.com/sryaarf/imagestorage/refs/heads/main/New%20Project%2057%20%5BC317B94%5D.png"
+      },
+      "fields": []
+    }
+  ],
+  "components": []
+}
