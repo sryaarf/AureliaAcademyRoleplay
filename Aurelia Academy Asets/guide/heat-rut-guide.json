@@ -1,0 +1,110 @@
+{
+  "content": "",
+  "tts": false,
+  "attachments": [],
+  "embeds": [
+    {
+      "id": 177147510,
+      "title": "Omegaverse – Panduan Heat & Rut",
+      "description": "Heat (Omega) dan Rut (Alpha) adalah siklus biologis penting dalam Omegaverse. Berikut panduan lengkapnya:",
+      "color": 13632027,
+      "fields": []
+    },
+    {
+      "id": 489265732,
+      "title": "1. Heat (Omega)",
+      "color": 16753920,
+      "fields": [
+        {
+          "id": 366692907,
+          "name": "Frekuensi & Durasi",
+          "value": "Heat terjadi tiap bulan, berlangsung 7 hari (1 Minggu) dengan durasi umum 3–5 hari"
+        },
+        {
+          "id": 344319876,
+          "name": "Gejala Fisik",
+          "value": "Kram, kelelahan, lekas marah, berkeringat—mirip indikasi flu ringan"
+        },
+        {
+          "id": 887936461,
+          "name": "🏠 Perilaku",
+          "value": "Nesting: buat sarang nyaman, kumpulkan benda sentimental :contentReference[oaicite:3]{index=3}."
+        },
+        {
+          "id": 851662085,
+          "name": "Feromon & Aroma",
+          "value": "Feromon yang pekat dan kuat (Tergantung Jenis Feromon) untuk menarik Alpha"
+        },
+        {
+          "id": 966555572,
+          "name": "Urutan Heat",
+          "value": "Pre-Heat (2 hari Sebelum Heat), Heat (5-7 hari)"
+        }
+      ]
+    },
+    {
+      "id": 18951077,
+      "title": "2. Rut (Alpha)",
+      "color": 3447003,
+      "fields": [
+        {
+          "id": 778166318,
+          "name": "Frekuensi & Durasi",
+          "value": "Rut natural Perbulan, Dan Durasinya Tergantung apakah bisa ditahan oleh Rut Suppressant Atau Bisa dilampiaskan dengan Masturbasi"
+        },
+        {
+          "id": 959589983,
+          "name": "Gejala Fisik & Perilaku",
+          "value": "Agresif, protektif, gelisah, aroma feromon Alpha meningkat"
+        },
+        {
+          "id": 254328543,
+          "name": "Rut & Partner",
+          "value": "Lebih mudah dikelola bersama Omega atau area aman (safe space)"
+        }
+      ]
+    },
+    {
+      "id": 656241187,
+      "title": "3. Suppresan & Blocker",
+      "color": 10038562,
+      "fields": [
+        {
+          "id": 82752222,
+          "name": "Heat & Rut Suppressants",
+          "value": "Digunakan untuk menurunkan intensitas heat atau rut; tersedia dalam bentuk tablet"
+        },
+        {
+          "id": 867639592,
+          "name": "Scent Blockers",
+          "value": "Menutupi atau menyamarkan aroma feromon; dosis penuh bisa menyebabkan depresi atau kehilangan identitas"
+        }
+      ]
+    },
+    {
+      "id": 578823849,
+      "title": "4. Triggered Heat / Rut",
+      "color": 8311585,
+      "fields": [
+        {
+          "id": 313666952,
+          "name": "Pemicu",
+          "value": "Soulmate, partner, atau individu berlawanan dinamika dalam jarak dekat bisa memicu heat/rut tiba-tiba"
+        },
+        {
+          "id": 21735669,
+          "name": "Frenzy Alpha",
+          "value": "Dalam triggered rut, Alpha bisa agresif ekstrem dan kehilangan kontrol"
+        }
+      ]
+    },
+    {
+      "id": 317279147,
+      "title": "Kesimpulan",
+      "description": "Heat dan Rut adalah elemen biologis serta naratif sentral dalam Omegaverse. Consent, pemahaman gejala, dan penggunaan blocker/safe space adalah kunci untuk worldbuilding yang sehat dan sensitif.",
+      "color": 5814783,
+      "fields": []
+    }
+  ],
+  "components": []
+}
