@@ -1,0 +1,36 @@
+{
+  "content": "# PANDUAN AURELIA ACADEMY ROLEPLAY SERVER\n`` Reminder:\nbaca dengan seksama``",
+  "tts": false,
+  "attachments": [],
+  "embeds": [
+    {
+      "id": 174831423,
+      "title": "**Panduan Memlai roleplay Di Aurelia Academy**",
+      "description": "Panduan memulai roleplay disini, disini adalah panduan dasar untuk memulai perjalanan mu disini\n",
+      "color": 16777215,
+      "fields": [
+        {
+          "id": 167828328,
+          "name": "1. Registrasi Karakter",
+          "value": "sebelum kalian memulai kalian bisa mendaftarkan karakter kaliandengan cara pergi ke Channel berikut:\npergi ke <#1380795056776282184> untuk mengambil **template**\npasang data itu di <#1380817103149465620> Untuk melakukan registrasi Karakter mu\nuntuk <#1380818136919707738> itu opsional, jika sudah memiliki lore nya yang sesuai dengan alur disini bisa langsung di post"
+        },
+        {
+          "id": 445454624,
+          "name": "2.Memulai Roleplay",
+          "value": "Kalian Bisa kemulai Roleplay kalian dengan spawn di Area tertentu, kalian bisa spawn di area ini:\n- ``AURELIA ACADEMY`` jika kalian ingin langsung spawn di area sekolahan\n- ``AURELIA HOSTEL`` jika kalian ingin spawn di area asrama\n- ``OUTSIDE SCHOOL`` jika kalian ingin spawn diluar area sekolahan\n- ``COUNTRY SIDE`` jika kalian ingin spawn di wilayah pedesaan tidak jauh dari area sekolahan\n"
+        },
+        {
+          "id": 652266008,
+          "name": "3. Aturan Roleplay",
+          "value": "jika panduan sudah dipahami maka selanjutnya kalian perlu membaca Buku aturan server Roleplay di **AURELIA ACADEMY ROLEPLAY SERVER** yaitu di <#1380515241569419364>"
+        },
+        {
+          "id": 381949226,
+          "name": "4. tentang sistem karakter",
+          "value": "Disini tidak ada sistem health point (HP) disini hanya terdapat status saja yaitu:\n``Luka parah, Luka Sedang, Luka ringan, Lumpuh, Kejang, dan kaki gemetaran``"
+        }
+      ]
+    },
+    {
+      "id": 281521682,
+      "color": 16777215,
