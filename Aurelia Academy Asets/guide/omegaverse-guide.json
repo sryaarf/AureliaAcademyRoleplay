@@ -1,0 +1,38 @@
+{
+  "content": "",
+  "tts": false,
+  "attachments": [],
+  "embeds": [
+    {
+      "title": "Omegaverse – Panduan Peran: Enigma, Alpha, Beta, Omega",
+      "description": "Dalam Omegaverse, selain Alpha, Beta, dan Omega, terdapat varian langka yaitu Enigma. Simak panduan lengkap berikut:",
+      "color": 5814783
+    },
+    {
+      "title": "Enigma",
+      "description": "Varian paling langka: “Alpha dari semua Alpha”. Mereka memiliki *kharisma, kekuatan, dan insting dominan ekstrem* serta hampir tak tertandingi.",
+      "color": 12880733
+    },
+    {
+      "title": "Alpha",
+      "description": "Alpha adalah kasta dominan: kuat, agresif, protektif, dan sering bertindak sebagai pemimpin alami. Mereka memiliki *knotting* untuk meningkatkan peluang kehamilan.",
+      "color": 16711680
+    },
+    {
+      "title": "Beta",
+      "description": "Beta adalah ‘manusia biasa’ dalam hierarki. Mereka netral, stabil, dan tidak mengalami rut atau heat, meski bisa memiliki aroma netral ringan dan bertindak sebagai penyeimbang sosial.",
+      "color": 255
+    },
+    {
+      "title": "Omega",
+      "description": "Omega adalah kasta paling *submisif*: lembut, damai, dan mengalami *heat* (estrus). Mereka juga bisa hamil—termasuk pria dalam beberapa AU—dan menghasilkan ‘slick’ selama heat.",
+      "color": 16766720
+    },
+    {
+      "title": "Kesimpulan",
+      "description": "Enigma, Alpha, Beta, dan Omega membentuk kerangka biologis dan sosial unik dalam Omegaverse. Memahami peran, siklus, dan interaksi mereka sangat penting untuk menciptakan worldbuilding yang otentik.",
+      "color": 7506394
+    }
+  ],
+  "components": []
+}
