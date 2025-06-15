@@ -34,4 +34,61 @@
     {
       "id": 414986262,
       "title": "🏫 Tentang Aurelia Academy",
-      
+      "description": "**Aurelia melarang cinta.** Bukan karena cinta tak penting, tapi karena cinta adalah **senjata mematikan**.\n\nSatu sentuhan bisa jadi skandal, satu ikatan bisa jadi kehancuran, satu rasa bisa membakar seluruh sistem. Namun ada mereka yang cukup berani untuk **melanggar aturan itu**.",
+      "color": 3158064
+    },
+    {
+      "title": "💠 Tempat Para Terkutuk dan Terpilih",
+      "color": 3158064,
+      "fields": [
+        {
+          "name": "Alpha",
+          "value": "Diuji mempertahankan kuasa, atau diam-diam hancur oleh kelembutan."
+        },
+        {
+          "name": "Beta",
+          "value": "Pengatur strategi di balik layar, menyaksikan dari bayangan."
+        },
+        {
+          "name": "Omega",
+          "value": "Dipaksa tunduk… atau membakar label pasrah yang dilekatkan pada mereka."
+        },
+        {
+          "name": "Enigma",
+          "value": "Dua sosok misterius yang tak bisa dipahami, di atas tatanan Alpha-Beta-Omega."
+        }
+      ]
+    },
+    {
+      "title": "👑 Gabriel Moretti — *The Don*",
+      "description": "Pendiri Aurelia Academy. Penuh aura kepemimpinan dan dingin. Tapi ia memiliki satu rahasia: **cintanya pada Rein El**, satu-satunya Omega yang pernah membuatnya terlihat manusiawi.\n\nIkatan mereka adalah skandal tersembunyi yang bisa menghancurkan segalanya.",
+      "color": 3158064
+    },
+    {
+      "title": "🕶️ Alexander Ren — *The Void King*",
+      "description": "Enigma kedua. Dingin, analitis, tak terjamah. Dijuluki *The Untouched*, karena tak ada yang bisa mendekatinya tanpa terluka.\n\nIa bukan pencari cinta, tapi penjaga keseimbangan brutal sistem. Beberapa berkata ia iri pada ikatan Moretti—karena itu adalah sesuatu yang **tak pernah bisa ia miliki**.",
+      "color": 3158064
+    },
+    {
+      "title": "Cadis Etrama De Raizel - The Destroyer Of Order",
+      "description": "⚙️ LATAR BELAKANG SINGKAT  CADIS ETRAMA DE RAIZEL\n\n> \"Ia tidak dilahirkan… Ia dibentuk oleh kesalahan yang tidak bisa diulangi.\"\n\n\n\nCadis Etrama De Raizel adalah hasil eksperimen rahasia tingkat absolut oleh Lunaxel Veydrion, ilmuwan paling gila dan jenius dalam sejarah tersembunyi Akademi. Ia diciptakan bukan untuk menjadi manusia, Alpha, atau Omega tetapi wadah sempurna untuk konsep kekuasaan itu sendiri.\n\nDalam eksperimennya yang disebut “Project Voidthrone”, Lunaxel menggunakan inti DNA dari subjek Enigma terdahulu yang telah dilenyapkan karena terlalu berbahaya kemudian memadatkannya ke dalam struktur biologis artifisial.\n\n> DNA yang digunakan berasal dari Tiga Enigma Terbuang: Seorang manipulator realitas, Seorang pembawa kematian psikis, Dan satu entitas tak dikenal yang bahkan para Staff tidak mencatat identitasnya.\n\n\n\nCadis seharusnya menjadi senjata. Tapi sejak \"aktivasi kesadarannya\", dia tidak pernah menerima perintah.\nDia tidak memberontak dia mengabaikan seluruh sistem.\n\n> Ia tidak pernah marah. Tidak pernah tertawa. Tidak pernah gagal.\nIa hanya... berjalan ke tempat di mana kekuasaan seharusnya berdiri.\nDan semua yang mengklaimnya... menghilang.\n\n\n\nKeberadaannya kemudian disembunyikan oleh Rein El sendiri, dan ia diberikan satu posisi:\nPenjaga Keseimbangan Internal Enigma.\nBukan untuk menjaga murid tapi untuk menghapus yang terlalu dekat pada kehancuran total.",
+      "color": 3158064
+    },
+    {
+      "title": "Rein EI – The Cracked Rose Pheromones",
+      "description": "Lahir di lingkungan ekonomi rendah, Rein EI tumbuh di tengah kerasnya kehidupan jalanan. Untuk bertahan hidup, ia bekerja di sebuah bar kelas bawah di distrik gelap Aurelia. Namun, nasibnya berubah drastis saat sang pemilik bar melelang tubuh Rein dalam sebuah acara gelap yang hanya dihadiri oleh para elite—sebuah malam yang menjadi awal kehancurannya.\n\nHanya dua penawar yang tertarik pada Rein: Grabiel Moretti, pewaris mafia berdarah dingin, dan Alexander Ren, bangsawan akademisi yang dikenal misterius. Lelang itu dimenangkan oleh Grabiel, yang langsung menjadikan Rein budak pribadi—bukan hanya untuk kesenangan, tapi juga untuk mendominasi secara brutal.\n\nHari-hari Rein berubah menjadi malam tanpa cahaya, terlebih setelah Grabiel memperbolehkan Rein digunakan sebagai bahan eksperimen di laboratorium miliknya. Para peneliti menyatakan:\n\n“Tubuhnya memiliki imun yang luar biasa. Ia cocok untuk semua jenis bahan eksperimen.”\n\nEksperimen demi eksperimen dilakukan tanpa ampun—dari suntikan kimia penekan feromon, hingga program uji yang mengubah aura omega-nya menjadi ‘Enigma’, bentuk langka yang belum pernah berhasil distabilkan.\n\nNamun, uji coba terakhir terlalu ekstrem. Dosis bahan kimia Enigma yang berlebihan membuat feromon mawar Rein kehilangan kestabilan, menghancurkan kendali alaminya atas heat cycles. Akibatnya, Rein tak hanya kehilangan identitas sebagai Omega kuat, tapi juga menjadi salah satu Omega paling lemah dan rentan di seluruh Aurelia Academy.\n\nKini, Rein adalah simbol tragis tentang bagaimana kekuatan bisa dirampas",
+      "color": 3158064
+    },
+    {
+      "title": "🩸 Aurelia Adalah Ujian",
+      "description": "Di sekolah ini, semua diuji:\n\n- Dengan **peraturan keras** agar naluri tak menguasai.\n- Dengan **ritual dan ujian brutal** untuk menyaring yang terkuat.\n- Dengan **dua Enigma**: cinta yang mematikan & kehampaan yang membunuh perlahan.\n\n**Aurelia Academy adalah simfoni berdarah.**\n\nDan hanya mereka yang cukup gila, kuat, atau hancur… yang bisa bertahan.",
+      "color": 3158064
+    },
+    {
+      "color": 3158064,
+      "image": {
+        "url": "https://raw.githubusercontent.com/sryaarf/imagestorage/refs/heads/main/New Project 57 [C317B94].png"
+      }
+    }
+  ]
+}

@@ -34,4 +34,33 @@
     {
       "id": 18555938,
       "title": "✨ 4. Content Guidelines",
-      
+      "description": "• Romance & drama diperbolehkan, tapi tetap **fade-to-black** untuk adegan eksplisit.\n• Gunakan content warning untuk tema sensitif (trauma, kekerasan ringan, dsb).",
+      "color": 15844367
+    },
+    {
+      "title": "🏰 5. Server Channels & Structure",
+      "description": "• Ikuti aturan tiap channel (lihat pinned messages dan deskripsi).\n• Jangan spam pesan, emoji, atau link.\n• Untuk mencari partner gunakan <#1380829934657732709>",
+      "color": 15844367
+    },
+    {
+      "title": "👑 6. Respect Hierarchy & Staff",
+      "description": "• Moderator dan admin bertugas menjaga ketertiban. Hormati keputusan mereka.\n• Jika ada konflik antar member, silakan lapor via DM ke moderator.",
+      "color": 15844367
+    },
+    {
+      "title": "🌟 7. Character & World-Building",
+      "description": "• Semua karakter harus sesuai dunia Aurelia: Alpha, Beta, atau Omega.\n• Gunakan template karakter jika tersedia.\n• Karakter harus seimbang dan tidak melanggar lore (contoh: tidak ada 'Alpha abadi').",
+      "color": 15844367
+    },
+    {
+      "title": "🔒 8. Privacy & Security",
+      "description": "• Dilarang mengirim link phishing, iklan server lain, atau konten ilegal.\n• Gunakan fitur **Block** jika perlu, dan laporkan perilaku bermasalah ke staff.",
+      "color": 15844367
+    },
+    {
+      "title": "🔥 9. Server Theme & Spirit",
+      "description": "• Ini adalah dunia Aurelia Academy: cinta dilarang, naluri dibatasi, dan rahasia mengintai.\n• Dukung sesama roleplayer. Jadikan cerita lebih dramatis dan memikat!",
+      "color": 15844367
+    }
+  ]
+}
