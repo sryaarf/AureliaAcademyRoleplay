@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Aurelia Academy — TCG (Cyber UI × Civil Draft)</title>
+<style>
+  :root{
+    --bg:#121316; --panel:#17181b; --muted:#9aa3ad; --ink:#e6eef3;
+    --neon-cyan:#0af1ff; --neon-blue:#6fb3ff; --neon-purple:#b57bff; --neon-gold:#ffd166;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#0f1113 0%, #121416 100%);font-family:"Source Code Pro",Consolas,monospace;color:var(--ink)}
+  .hidden{display:none}
+
+  /* App layout */
+  .app{display:flex;height:100vh;overflow:hidden}
+  .sidebar{width:260px;background:linear-gradient(180deg,#151618,#1b1d20);border-right:1px solid rgba(255,255,255,0.06);padding:18px;box-shadow:inset 0 0 40px rgba(10,20,30,.6)}
+  .logo{font-weight:800;color:var(--neon-cyan);letter-spacing:1px;margin-bottom:14px}
+  .avatar{width:128px;height:128px;border-radius:12px;margin:0 auto 10px;background-size:cover;background-position:center;border:2px solid rgba(10,241,255,.16);box-shadow:0 6px 18px rgba(0,0,0,.5)}
+  .small{font-size:12px;color:var(--muted)}
+  .char-list{margin-top:10px;display:grid;gap:8px}
+  .char-btn{display:flex;gap:10px;align-items:center;padding:8px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));cursor:pointer;border:1px solid rgba(255,255,255,.06)}
+  .char-btn:hover{outline:2px solid rgba(111,179,255,.18)}
+  .thumb{width:36px;height:36px;border-radius:8px;background-size:cover;background-position:center;border:1px solid rgba(255,255,255,.08)}
+  .main{flex:1;display:flex;flex-direction:column}
+  .toolbar{height:64px;padding:12px 18px;background:linear-gradient(180deg,#0f1113,#111214);display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .brand{font-weight:800;color:var(--neon-cyan)}
+  .btn{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.08);background:transparent;color:inherit;cursor:pointer}
+  .btn.primary{border-color:rgba(10,241,255,.18);background:linear-gradient(90deg, rgba(10,241,255,.08), rgba(111,179,255,.04));color:var(--neon-cyan);font-weight:700}
+  .currency{margin-left:auto;padding:6px 10px;border-radius:8px;background:linear-gradient(180deg,#0f1113,#131416);border:1px solid rgba(255,255,255,.06);display:flex;gap:8px;align-items:center}
+  .amount{color:var(--neon-cyan);font-weight:800}
+
+  .screen{flex:1;overflow:auto;padding:18px}
+
+  /* Battle grid (Civil Draft inspired) */
+  .battle-grid{display:grid;grid-template-columns:1fr 1fr 320px;grid-template-rows:320px 1fr;gap:12px;align-items:start}
+  .zone{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,.08);min-height:120px}
+  .zone h3{margin:0 0 8px 0;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+  .slot-row{display:flex;gap:10px;flex-wrap:wrap}
+  .card{width:150px;height:200px;border-radius:10px;background:#0f1720;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;padding:8px;position:relative;cursor:pointer;user-select:none}
+  .card.empty{border:1px dashed rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+  .title{font-weight:800;font-size:14px;line-height:1.2}
+  .meta{font-size:11px;color:var(--muted)}
+  .stats{display:flex;justify-content:space-between;font-size:12px}
+  .badge{padding:2px 6px;border-radius:6px;background:rgba(255,255,255,.06);font-size:11px}
+  /* rarity glow + holo */
+  .r-common{box-shadow:0 8px 20px rgba(255,255,255,.06)}
+  .r-rare{box-shadow:0 8px 28px rgba(111,179,255,.16),0 0 12px rgba(111,179,255,.10)}
+  .r-epic{box-shadow:0 8px 28px rgba(181,123,255,.16),0 0 14px rgba(181,123,255,.10)}
+  .r-legend{box-shadow:0 8px 32px rgba(255,209,102,.18),0 0 16px rgba(255,209,102,.12)}
+  .holo{position:absolute;inset:0;border-radius:10px;pointer-events:none;background:linear-gradient(120deg, rgba(255,255,255,.05), rgba(255,255,255,.08));mix-blend-mode:screen;opacity:.9}
+  /* piles */
+  .piles{display:grid;grid-template-columns:320px 1fr 320px;gap:12px;margin-top:12px}
+  .pile{display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;padding:12px;border-radius:10px;background:#0c0f11;border:1px solid rgba(255,255,255,.08);min-height:120px}
+  .hand{display:flex;gap:10px;align-items:flex-end;padding:8px;overflow:auto}
+  .mini{width:120px;height:160px;border-radius:8px;background:#0b1012;padding:8px;border:1px solid rgba(255,255,255,.08);cursor:pointer;flex:0 0 auto;position:relative}
+  .mini .title{font-size:12px}
+  /* responsive */
+  @media(max-width:1100px){ .battle-grid{grid-template-columns:1fr;grid-template-rows:auto} .piles{grid-template-columns:1fr} .sidebar{display:none} }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">AURELIA ACADEMY</div>
+    <div id="avatar" class="avatar" style="background-image:url('https://i.imgur.com/5QF4QpZ.png')"></div>
+    <div id="selName" class="small">No character selected</div>
+
+    <div style="margin-top:12px">
+      <div class="small" style="margin-bottom:6px">Choose character</div>
+      <div id="charList" class="char-list"></div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="small">Tips</div>
+      <div class="small" style="margin-top:6px;line-height:1.5">
+        • Items untuk Objective tidak dikonsumsi (tetap di inventory).<br>
+        • Place: <b>Aurelia Academy</b> → Draw 2 tiap turn.<br>
+        • Place: <b>Countryside</b> → –7 DMG (debuff ke DMG karaktermu).
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="toolbar">
+      <div class="brand">Aurelia TCG — Prototype</div>
+      <button id="btnStart" class="btn primary">Start Battle</button>
+      <button id="btnNextTurn" class="btn" disabled>Next Turn</button>
+      <button id="btnAttack" class="btn" disabled>Attack Objective</button>
+
+      <div class="currency">
+        <span class="small">A-Crystal</span>
+        <span id="balance" class="amount">0</span>
+        <button id="btnStore" class="btn" style="margin-left:8px">Top-Up</button>
+      </div>
+    </div>
+
+    <!-- MENU -->
+    <section id="menu" class="screen" style="display:block">
+      <h3 style="margin:0 0 10px;color:var(--neon-cyan)">Main Menu</h3>
+      <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1;min-width:320px">
+          <div class="small">Top-Up (fake) — makin mahal → cooldown makin lama.</div>
+          <div id="store" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"></div>
+        </div>
+        <div style="width:380px;min-width:300px">
+          <div class="zone">
+            <h3>Collection (sample)</h3>
+            <div id="collection" class="slot-row"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BATTLE -->
+    <section id="battle" class="screen hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="small">Location: <span id="locLabel">None</span></div>
+        <div class="small">Turn: <span id="turnLabel">0</span></div>
+      </div>
+
+      <div class="battle-grid">
+        <!-- Objective -->
+        <div class="zone">
+          <h3>Objective</h3>
+          <div id="objectiveSlots" class="slot-row">
+            <div class="card empty" data-slot="objective">(empty)</div>
+          </div>
+          <h3 style="margin-top:10px">Materials / Requirements</h3>
+          <div id="materialSlots" class="slot-row">
+            <div class="card empty" data-slot="material-0">mat 1</div>
+            <div class="card empty" data-slot="material-1">mat 2</div>
+            <div class="card empty" data-slot="material-2">mat 3</div>
+          </div>
+        </div>
+
+        <!-- Characters + item slots -->
+        <div class="zone">
+          <h3>Characters</h3>
+          <div id="charSlots" class="slot-row">
+            <div class="card empty" data-slot="char-0">char 1</div>
+            <div class="card empty" data-slot="item-0">item 1</div>
+            <div class="card empty" data-slot="char-1">char 2</div>
+            <div class="card empty" data-slot="item-1">item 2</div>
+            <div class="card empty" data-slot="char-2">char 3</div>
+            <div class="card empty" data-slot="item-2">item 3</div>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="zone">
+          <h3>Location</h3>
+          <div id="locationSlots" class="slot-row">
+            <div class="card empty" data-slot="location">(empty)</div>
+          </div>
+        </div>
+
+        <!-- Draw -->
+        <div class="zone">
+          <h3>Draw Pile</h3>
+          <div class="pile">
+            <div class="small">Deck: <span id="deckCount">0</span></div>
+            <button id="btnDraw" class="btn">Draw</button>
+          </div>
+        </div>
+
+        <!-- Hand -->
+        <div class="zone">
+          <h3>Your Hand</h3>
+          <div id="hand" class="hand"></div>
+        </div>
+
+        <!-- Discard -->
+        <div class="zone">
+          <h3>Discard Pile</h3>
+          <div class="pile">
+            <div class="small">Discard: <span id="discardCount">0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+        <div class="zone" style="flex:1;min-width:280px">
+          <h3>Game Log</h3>
+          <div id="log" style="height:120px;overflow:auto;font-size:12px;color:var(--muted)"></div>
+        </div>
+        <div class="zone" style="width:340px;min-width:280px">
+          <h3>Info</h3>
+          <div class="small">Active Location Effect:</div>
+          <div id="locEffect" class="small" style="margin-top:6px">None</div>
+          <div style="height:8px"></div>
+          <div class="small">Player Debuff:</div>
+          <div id="buffs" class="small" style="margin-top:6px">None</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+/** ---------- Data ---------- **/
+const CHARACTERS = [
+  {name:'Grabiel Moretti', img:'https://i.imgur.com/5QF4QpZ.png'},
+  {name:'Hena', img:'https://i.imgur.com/1vJqLco.png'},
+  {name:'Rein EI', img:'https://i.imgur.com/BwC4v3Q.png'},
+  {name:'Lunaxel Veydrion', img:'https://i.imgur.com/tWcQ1vM.png'},
+  {name:'Cadiz Etrama De Raizel', img:'https://i.imgur.com/FjR2rRt.png'},
+  {name:'Alexander Ren', img:'https://i.imgur.com/VgH0hWD.png'},
+  {name:'Shirosaki Henry', img:'https://i.imgur.com/pQwJYzr.png'},
+  {name:'Allen', img:'https://i.imgur.com/zShmGmN.png'},
+  {name:'Levea Morgan Lee', img:'https://i.imgur.com/oY0zq7L.png'},
+];
+
+const TIERS = [
+  {id:'bronze', label:'Bronze +10', cost:10,  cooldown:60},
+  {id:'silver', label:'Silver +50', cost:50,  cooldown:300},
+  {id:'gold',   label:'Gold +200', cost:200, cooldown:1200},
+  {id:'plat',   label:'Platinum +1000', cost:1000, cooldown:7200},
+];
+
+const STARTER_CARDS = [
+  // Characters
+  {name:'Grabiel Moretti', type:'Character', dmg:12, hp:30, rarity:'legend'},
+  {name:'Hena',            type:'Character', dmg:8,  hp:26, rarity:'rare'},
+  {name:'Rein EI',         type:'Character', dmg:11, hp:22, rarity:'epic'},
+  {name:'Lunaxel Veydrion',type:'Character', dmg:15, hp:20, rarity:'legend'},
+  {name:'Alexander Ren',   type:'Character', dmg:7,  hp:25, rarity:'common'},
+  // Objectives
+  {name:'Objective: Crystal Tower', type:'Objective', dmg:0, hp:18, rarity:'rare'},
+  {name:'Objective: Arcane Vault',  type:'Objective', dmg:0, hp:14, rarity:'epic'},
+  // Items (generic)
+  {name:'Item: Sword of Light (+3 DMG)', type:'Item', dmg:0, hp:0, rarity:'common', item:{dmg:+3}},
+  {name:'Item: Shield Core (+5 HP)',     type:'Item', dmg:0, hp:0, rarity:'rare',   item:{hp:+5}},
+  {name:'Item: Pass Aurelia (Req)',      type:'Item', dmg:0, hp:0, rarity:'common', item:{tag:'req'}},
+  // Places
+  {name:'Place: Aurelia Academy', type:'Place', dmg:0, hp:0, rarity:'epic', placeId:'aurelia'},
+  {name:'Place: Countryside',     type:'Place', dmg:0, hp:0, rarity:'epic', placeId:'countryside'},
+];
+
+const rarityClass = r => ({common:'r-common',rare:'r-rare',epic:'r-epic',legend:'r-legend'})[r] || 'r-common';
+
+/** ---------- State ---------- **/
+let state = JSON.parse(localStorage.getItem('aurelia_state_v3')||'null') || {
+  balance:0,
+  collection:[...STARTER_CARDS],
+  deck:[],
+  hand:[],
+  discard:[],
+  selectedCharacter:null,
+  cooldowns:{},
+  activeLocation:null,     // 'aurelia' | 'countryside' | null
+  debuffDMG:0,             // for Countryside
+  turn:0,
+  selectedCardIndex:null,  // index in hand selected to play
+  objectiveHP: null        // HP of active objective (from placed card)
+};
+
+/** ---------- DOM refs ---------- **/
+const el = (id)=>document.getElementById(id);
+const charList = el('charList'), avatar = el('avatar'), selName = el('selName');
+const balanceEl = el('balance'), store = el('store'), collectionEl = el('collection');
+const menu = el('menu'), battle = el('battle');
+const btnStart = el('btnStart'), btnNextTurn = el('btnNextTurn'), btnAttack = el('btnAttack'), btnDraw = el('btnDraw'), btnStore = el('btnStore');
+const deckCount = el('deckCount'), discardCount = el('discardCount'), handEl = el('hand');
+const objectiveSlots = el('objectiveSlots'), materialSlots = el('materialSlots'), locationSlots = el('locationSlots'), charSlots = el('charSlots');
+const logEl = el('log'), locEffect = el('locEffect'), buffsEl = el('buffs'), locLabel = el('locLabel'), turnLabel = el('turnLabel');
+
+/** ---------- Helpers ---------- **/
+function save(){ localStorage.setItem('aurelia_state_v3', JSON.stringify(state)); }
+function log(msg){ const d=document.createElement('div'); d.textContent = `• ${msg}`; logEl.prepend(d); }
+function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+function rarityBadge(r){ return `<span class="badge">${r.toUpperCase()}</span>`; }
+function cardView(c, mini=false){
+  const rc = rarityClass(c.rarity);
+  const wrapper = document.createElement('div');
+  wrapper.className = mini ? `mini ${rc}` : `card ${rc}`;
+  wrapper.innerHTML = `
+    <div class="title">${c.name}</div>
+    <div class="meta">${c.type}${c.placeId ? ' • '+c.placeId:''}</div>
+    <div class="stats"><span>DMG ${c.dmg||0}</span><span>HP ${c.hp||0}</span></div>
+    <div class="meta">${rarityBadge(c.rarity)}</div>
+    <div class="holo"></div>
+  `;
+  return wrapper;
+}
+
+/** ---------- Character List ---------- **/
+function renderCharacters(){
+  charList.innerHTML='';
+  CHARACTERS.forEach(ch=>{
+    const d=document.createElement('div'); d.className='char-btn';
+    d.innerHTML = `<div class="thumb" style="background-image:url('${ch.img}')"></div><div>${ch.name}</div>`;
+    d.onclick = ()=>{ state.selectedCharacter = ch; avatar.style.backgroundImage = `url('${ch.img}')`; selName.textContent = ch.name; save(); };
+    charList.appendChild(d);
+  });
+}
+
+/** ---------- Store (Top-Up) ---------- **/
+function secsLeft(id){ const t=state.cooldowns[id]||0; const s=Math.ceil((t-Date.now())/1000); return s>0?s:0; }
+function fmt(t){ const m=Math.floor(t/60), s=t%60; return `${m}m ${s}s`; }
+function grantBonusCard(){
+  const c = JSON.parse(JSON.stringify(STARTER_CARDS[Math.floor(Math.random()*STARTER_CARDS.length)]));
+  state.collection.push(c); log(`Bonus card: ${c.name} (${c.rarity})`);
+}
+function renderStore(){
+  store.innerHTML='';
+  TIERS.forEach(t=>{
+    const wrap=document.createElement('div'); wrap.style.display='flex'; wrap.style.flexDirection='column'; wrap.style.alignItems='start';
+    const b=document.createElement('button'); b.className='btn'; b.textContent=t.label; b.disabled = secsLeft(t.id)>0;
+    b.onclick=()=>{
+      if(secsLeft(t.id)>0) return;
+      state.balance += t.cost;
+      if(t.cost>=50) grantBonusCard();
+      state.cooldowns[t.id]=Date.now()+t.cooldown*1000;
+      updateCurrency(); renderStore(); renderCollection();
+      save(); log(`Top-Up ${t.label} → +${t.cost} A-Crystal`);
+    };
+    wrap.appendChild(b);
+    const cd=document.createElement('div'); cd.className='small';
+    if(secsLeft(t.id)>0) cd.textContent='CD: '+fmt(secsLeft(t.id)); else cd.textContent='Ready';
+    wrap.appendChild(cd); store.appendChild(wrap);
+  });
+}
+function updateCurrency(){ balanceEl.textContent = state.balance; }
+
+/** ---------- Collection preview ---------- **/
+function renderCollection(){
+  collectionEl.innerHTML='';
+  state.collection.slice(0,8).forEach(c=>{ const v=cardView(c,true); collectionEl.appendChild(v); });
+}
+
+/** ---------- Deck / Draw / Hand ---------- **/
+function buildDeck(){
+  const pool = state.collection.slice();
+  shuffle(pool);
+  state.deck = pool.slice(0,30);
+  state.hand=[]; state.discard=[]; state.turn=0;
+  state.activeLocation=null; state.debuffDMG=0; state.objectiveHP=null;
+  updateCounts(); updateInfo();
+  handEl.innerHTML='';
+  clearBoard();
+  save();
+}
+function updateCounts(){ deckCount.textContent = state.deck.length; discardCount.textContent = state.discard.length; }
+function updateInfo(){
+  locLabel.textContent = state.activeLocation? state.activeLocation : 'None';
+  if(state.activeLocation==='aurelia'){ locEffect.textContent='Draw 2 cards at start of your turn.'; }
+  else if(state.activeLocation==='countryside'){ locEffect.textContent='All your Characters: –7 DMG (debuff).'; }
+  else { locEffect.textContent='None'; }
+  buffsEl.textContent = state.debuffDMG ? `–${Math.abs(state.debuffDMG)} DMG active` : 'None';
+  turnLabel.textContent = state.turn;
+}
+function draw(n=1){
+  for(let i=0;i<n;i++){
+    if(!state.deck.length){ log('Deck empty.'); break; }
+    const c = state.deck.shift();
+    state.hand.push(c);
+  }
+  updateCounts(); renderHand(); save();
+}
+function renderHand(){
+  handEl.innerHTML='';
+  state.hand.forEach((c,idx)=>{
+    const v=cardView(c,true);
+    if(state.selectedCardIndex===idx) v.style.outline='2px solid var(--neon-cyan)';
+    v.onclick=()=>{ state.selectedCardIndex = (state.selectedCardIndex===idx? null: idx); renderHand(); };
+    handEl.appendChild(v);
+  });
+}
+
+/** ---------- Board slots ---------- **/
+function clearBoard(){
+  [...objectiveSlots.children].forEach((d,i)=>{ if(i===0){ d.className='card empty'; d.textContent='(empty)'; d.dataset.slot='objective'; }});
+  [...materialSlots.children].forEach((d,i)=>{ d.className='card empty'; d.textContent=`mat ${i+1}`; d.dataset.slot=`material-${i}`; });
+  [...locationSlots.children].forEach((d,i)=>{ d.className='card empty'; d.textContent='(empty)'; d.dataset.slot='location'; });
+  [...charSlots.children].forEach((d,i)=>{
+    const isItem = i%2===1; d.className='card empty';
+    d.textContent = isItem? `item ${Math.floor(i/2)+1}` : `char ${Math.floor(i/2)+1}`;
+    d.dataset.slot = isItem? `item-${Math.floor(i/2)}` : `char-${Math.floor(i/2)}`;
+  });
+}
+
+/** ---------- Play card logic ---------- **/
+function slotClick(e){
+  const slot = e.currentTarget;
+  const sel = state.selectedCardIndex;
+  if(sel===null){ log('Select a card in your hand first.'); return; }
+  const card = state.hand[sel];
+
+  const sType = slot.dataset.slot;
+  const ok = canPlace(card, sType);
+  if(!ok){ log(`Cannot place ${card.type} on ${sType}.`); return; }
+
+  // place: render on slot
+  placeCardOnSlot(card, slot);
+  // remove from hand BUT if it's item used as material requirement, per rules "item tidak hilang dari inventory":
+  if(card.type==='Item' && (sType?.startsWith('material') || sType?.startsWith('item-'))){
+    // keep it in hand (not consumed): clone to slot visual only
+    log(`Used ${card.name} as requirement / equipment (not consumed).`);
+  } else {
+    state.hand.splice(sel,1);
+  }
+  state.selectedCardIndex=null;
+  renderHand(); save();
+}
+function canPlace(card, slotId){
+  if(!slotId) return false;
+  if(slotId==='objective') return card.type==='Objective';
+  if(slotId==='location') return card.type==='Place';
+  if(slotId.startsWith('material')) return card.type==='Item';
+  if(slotId.startsWith('char-')) return card.type==='Character';
+  if(slotId.startsWith('item-')) return card.type==='Item';
+  return false;
+}
+function placeCardOnSlot(card, slot){
+  slot.className = `card ${rarityClass(card.rarity)}`;
+  slot.innerHTML = `
+    <div class="title">${card.name}</div>
+    <div class="meta">${card.type}${card.placeId?' • '+card.placeId:''}</div>
+    <div class="stats"><span>DMG ${card.dmg||0}</span><span>HP ${card.hp||0}</span></div>
+    <div class="meta">${card.rarity.toUpperCase()}</div>
+    <div class="holo"></div>
+  `;
+  // special effects
+  if(slot.dataset.slot==='location'){
+    state.activeLocation = card.placeId || null;
+    applyLocationEffects();
+    log(`Location set: ${card.name}`);
+  }
+  if(slot.dataset.slot==='objective'){
+    state.objectiveHP = card.hp || 0;
+    log(`Objective in play (${state.objectiveHP} HP).`);
+  }
+  if(slot.dataset.slot?.startsWith('item-')){
+    // equipment: apply stat buffs to the character slot above it if exists
+    const idx = Number(slot.dataset.slot.split('-')[1]);
+    const charSlot = [...charSlots.children].find(d=>d.dataset.slot===`char-${idx}`);
+    if(charSlot && !charSlot.classList.contains('empty') && card.item){
+      // parse current DMG/HP text and add
+      const dmgSpan = charSlot.querySelector('.stats span:first-child');
+      const hpSpan  = charSlot.querySelector('.stats span:last-child');
+      if(card.item.dmg){ const cur = parseInt(dmgSpan.textContent.replace(/\D/g,'')); dmgSpan.textContent = `DMG ${cur + card.item.dmg}`; }
+      if(card.item.hp){  const cur = parseInt(hpSpan.textContent.replace(/\D/g,''));  hpSpan.textContent  = `HP ${cur + card.item.hp}`; }
+      log(`Equipped ${card.name} to character ${idx+1}.`);
+    }
+  }
+  if(slot.dataset.slot?.startsWith('material')){
+    log(`Material provided: ${card.name}. (not consumed)`);
+  }
+}
+
+/** ---------- Location effects ---------- **/
+function applyLocationEffects(){
+  if(state.activeLocation==='aurelia'){
+    state.debuffDMG = 0;
+  } else if(state.activeLocation==='countryside'){
+    state.debuffDMG = -7;
+    // apply debuff textually to characters on board
+    [...charSlots.children].forEach(s=>{
+      if(!s.classList.contains('empty')){
+        const dmgSpan = s.querySelector('.stats span:first-child');
+        const cur = parseInt(dmgSpan.textContent.replace(/\D/g,''));
+        dmgSpan.textContent = `DMG ${Math.max(0, cur + state.debuffDMG)}`;
+      }
+    });
+  } else {
+    state.debuffDMG = 0;
+  }
+  updateInfo();
+}
+
+/** ---------- Turn flow ---------- **/
+function startBattle(){
+  buildDeck();
+  draw(5);
+  menu.classList.add('hidden'); battle.classList.remove('hidden');
+  btnNextTurn.disabled=false; btnAttack.disabled=false;
+  state.turn=1; startTurn(); updateInfo();
+}
+function startTurn(){
+  log(`Turn ${state.turn} start.`);
+  if(state.activeLocation==='aurelia'){ log('Aurelia Academy → Draw 2.'); draw(2); }
+}
+function nextTurn(){
+  state.turn += 1;
+  startTurn();
+  updateInfo(); save();
+}
+
+/** ---------- Attack objective ---------- **/
+function totalDMGOnBoard(){
+  let total = 0;
+  const chars = [...charSlots.children].filter(s=>s.dataset.slot?.startsWith('char-') && !s.classList.contains('empty'));
+  chars.forEach(s=>{
+    const dmgSpan = s.querySelector('.stats span:first-child');
+    const dmg = parseInt(dmgSpan.textContent.replace(/\D/g,'')) || 0;
+    total += dmg;
+  });
+  return Math.max(0,total);
+}
+function attackObjective(){
+  if(state.objectiveHP===null){ log('No Objective in play.'); return; }
+  let dmg = totalDMGOnBoard();
+  if(state.activeLocation==='countryside'){ dmg = Math.max(0, dmg - 7); }
+  if(dmg<=0){ log('Your total DMG is 0.'); return; }
+  state.objectiveHP = Math.max(0, state.objectiveHP - dmg);
+  log(`Attack Objective for ${dmg} DMG → Objective HP now ${state.objectiveHP}.`);
+  if(state.objectiveHP===0){
+    log('Objective destroyed → moved to Discard.');
+    state.discard.push({name:'[Objective Cleared]', type:'Objective', dmg:0, hp:0, rarity:'common'});
+    discardCount.textContent = state.discard.length;
+    // clear the objective slot
+    const slot = objectiveSlots.querySelector('[data-slot="objective"]');
+    slot.className='card empty'; slot.textContent='(empty)';
+    state.objectiveHP=null;
+  }
+  save();
+}
+
+/** ---------- Wire up ---------- **/
+function renderBoardListeners(){
+  [...objectiveSlots.children, ...materialSlots.children, ...locationSlots.children, ...charSlots.children]
+    .forEach(s=> s.addEventListener('click', slotClick));
+}
+function renderAll(){
+  renderCharacters(); renderStore(); renderCollection(); updateCurrency(); renderBoardListeners();
+}
+
+btnStart.addEventListener('click', ()=>{ startBattle(); });
+btnNextTurn.addEventListener('click', ()=>{ nextTurn(); });
+btnAttack.addEventListener('click', ()=>{ attackObjective(); });
+btnDraw.addEventListener('click', ()=>{ draw(1); });
+btnStore.addEventListener('click', ()=>{ renderStore(); alert('Top-Up panel tersedia di Main Menu. Gunakan sebelum Start Battle.'); });
+
+/** ---------- Init ---------- **/
+(function init(){
+  // character pick preselect
+  if(state.selectedCharacter){ avatar.style.backgroundImage=`url('${state.selectedCharacter.img}')`; selName.textContent=state.selectedCharacter.name; }
+  renderAll();
+})();
+</script>
+</body>
+</html>
