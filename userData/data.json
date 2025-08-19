@@ -1,0 +1,48 @@
+{
+"nama" : "Rein EI"
+"kelas" : "Kelas E"
+"mainGender" : "Male"
+"aobGender" : "Omega"
+"kedudukan" : "Owner"
+"status" : "taken & marked"
+"namaKeluarga" : "Grabiel EI"
+"banyakKeluarga" : "1 Suami dan 5 Anak"
+
+"nama" : "Grabiel Moretti"
+"kelas" : "null"
+"mainGender" : "Male"
+"aobGender" : "Enigma"
+"kedudukan" : "unkown"
+"status" : "taken & marked"
+"namaKeluarga" : "Grabiel EI"
+"banyakKeluarga" : "1 Istri dan 5 Anak"
+
+"nama" : "Allen Morgan Lee"
+"kelas" : "Kelas A"
+"mainGender" : "Male"
+"aobGender" : "Enigma"
+"kedudukan" : "Staff"
+"status" : "taken & marked"
+"namaKeluarga" : "Morgan Lee"
+"banyakKeluarga" : "1 Istri dan 2 Anak"
+
+"nama" : "Lacus Clyne"
+"kelas" : "Kelas C"
+"mainGender" : "Female"
+"aobGender" : "Omega"
+"kedudukan" : "Student"
+"status" : "single"
+"namaKeluarga" : "null"
+"banyakKeluarga" : "0"
+
+"nama" : "Kukischan"
+"kelas" : "Kelas D"
+"mainGender" : "Male"
+"aobGender" : "Omega"
+"kedudukan" : "Teacher"
+"status" : "single & unmarked"
+"namaKeluarga" : "null"
+"banyakKeluarga" : "0"
+
+
+}
