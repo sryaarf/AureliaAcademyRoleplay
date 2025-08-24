@@ -1,0 +1,29 @@
+{
+  "items": {
+    "item1": {
+      "name": "item1",
+      "type": "type",
+      "description": "desk.",
+      "rarity": "rarity",
+      "price": 100,
+      "effects": {
+        "heal": 50
+      },
+      "stackable": true,
+      "max_stack": 10,
+      "usable": true
+    },
+    "item2": {
+      "name": "item2",
+      "type": "type",
+      "description": "desk",
+      "rarity": "rarity",
+      "price": 250,
+      "stats": {
+        "attack": 10,
+        "durability": 100
+      },
+      "stackable": false,
+      "usable": false
+  }
+}
